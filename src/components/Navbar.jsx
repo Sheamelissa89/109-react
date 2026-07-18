@@ -22,6 +22,11 @@ function Navbar() {
           <NavLink to="/contact">
             Contact
           </NavLink>
+
+          <NavLink to="/admin">
+            Admin
+          </NavLink>
+          
         </div>
       </nav>
     </header>

@@ -9,7 +9,7 @@ function Contact() {
     <section className="page-section">
       <div className="page-heading">
         <p className="eyebrow">Send a message</p>
-        <h2>Contact Us</h2>
+        <h1>Contact Us</h1>
         <p>
           Have a question about an item or an upcoming adventure?
         </p>
