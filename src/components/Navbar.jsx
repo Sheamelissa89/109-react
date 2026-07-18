@@ -1,6 +1,16 @@
 import { NavLink } from "react-router-dom";
+import { FaUserCircle, FaShoppingCart } from "react-icons/fa";
+import useStore from "../store/useStore";
 
 function Navbar() {
+  const userName = useStore((state) => state.userName);
+  const cart = useStore((state) => state.cart);
+
+  const totalItems = cart.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
+
   return (
     <header className="site-header">
       <nav className="navbar">
@@ -26,7 +36,18 @@ function Navbar() {
           <NavLink to="/admin">
             Admin
           </NavLink>
-          
+        </div>
+
+        <div className="nav-account">
+          <div className="nav-user">
+            <FaUserCircle />
+            <span>Welcome, {userName}</span>
+          </div>
+
+          <div className="nav-cart">
+            <FaShoppingCart />
+            <span>Cart: {totalItems}</span>
+          </div>
         </div>
       </nav>
     </header>
