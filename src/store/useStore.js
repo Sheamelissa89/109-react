@@ -2,13 +2,9 @@ import { create } from "zustand";
 
 const useStore = create((set) => ({
   userName: "Shea",
-
   cart: [],
 
-  setUserName: (newName) =>
-    set({
-      userName: newName,
-    }),
+  setUserName: (userName) => set({ userName }),
 
   addToCart: (product) =>
     set((state) => {
@@ -31,11 +27,6 @@ const useStore = create((set) => ({
       };
     }),
 
-  removeFromCart: (productId) =>
-    set((state) => ({
-      cart: state.cart.filter((item) => item.id !== productId),
-    })),
-
   increaseQuantity: (productId) =>
     set((state) => ({
       cart: state.cart.map((item) =>
@@ -56,10 +47,12 @@ const useStore = create((set) => ({
         .filter((item) => item.quantity > 0),
     })),
 
-  clearCart: () =>
-    set({
-      cart: [],
-    }),
+  removeFromCart: (productId) =>
+    set((state) => ({
+      cart: state.cart.filter((item) => item.id !== productId),
+    })),
+
+  clearCart: () => set({ cart: [] }),
 }));
 
 export default useStore;

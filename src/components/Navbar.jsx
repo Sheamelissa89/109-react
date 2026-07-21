@@ -1,57 +1,55 @@
 import { NavLink } from "react-router-dom";
-import { FaUserCircle, FaShoppingCart } from "react-icons/fa";
 import useStore from "../store/useStore";
 
-function Navbar() {
+function NavBar() {
   const userName = useStore((state) => state.userName);
   const cart = useStore((state) => state.cart);
 
-  const totalItems = cart.reduce(
+  const cartCount = cart.reduce(
     (total, item) => total + item.quantity,
     0
   );
 
+  const getLinkClass = ({ isActive }) =>
+    isActive ? "nav-link active-link" : "nav-link";
+
   return (
-    <header className="site-header">
-      <nav className="navbar">
-        <h1 className="logo">Atlas Adventure Shop</h1>
+    <nav className="navbar-container">
+      <NavLink className="store-brand" to="/">
+        <span className="brand-icon">✦</span>
+        <span>Atlas Adventure Shop</span>
+      </NavLink>
 
-        <div className="nav-links">
-          <NavLink to="/" end>
-            Home
-          </NavLink>
+      <div className="nav-links">
+        <NavLink className={getLinkClass} to="/">
+          Home
+        </NavLink>
 
-          <NavLink to="/catalog">
-            Catalog
-          </NavLink>
+        <NavLink className={getLinkClass} to="/catalog">
+          Catalog
+        </NavLink>
 
-          <NavLink to="/about">
-            About
-          </NavLink>
+        <NavLink className={getLinkClass} to="/about">
+          About
+        </NavLink>
 
-          <NavLink to="/contact">
-            Contact
-          </NavLink>
+        <NavLink className={getLinkClass} to="/contact">
+          Contact
+        </NavLink>
 
-          <NavLink to="/admin">
-            Admin
-          </NavLink>
-        </div>
+        <NavLink className={getLinkClass} to="/admin">
+          Admin
+        </NavLink>
 
-        <div className="nav-account">
-          <div className="nav-user">
-            <FaUserCircle />
-            <span>Welcome, {userName}</span>
-          </div>
+        <NavLink className={getLinkClass} to="/cart">
+          Cart
+          <span className="cart-count">{cartCount}</span>
+        </NavLink>
+      </div>
 
-          <div className="nav-cart">
-            <FaShoppingCart />
-            <span>Cart: {totalItems}</span>
-          </div>
-        </div>
-      </nav>
-    </header>
+      <div className="nav-user">Welcome, {userName}</div>
+    </nav>
   );
 }
 
-export default Navbar;
+export default NavBar;

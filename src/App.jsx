@@ -1,38 +1,39 @@
-import { Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
+import ProductDetails from "./pages/ProductDetails";
+
+
+import "bootstrap/dist/css/bootstrap.min.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
-import Cart from "./components/Cart";
+
 import Home from "./pages/Home";
 import Catalog from "./pages/Catalog";
-import ProductDetails from "./pages/ProductDetails";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Admin from "./pages/Admin";
+import Cart from "./pages/Cart";
+
 import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
-    <div className="app">
-      <Navbar />
+    <BrowserRouter>
+      <div className="app">
+        <NavBar />
 
-      <main className="main-content">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/catalog" element={<Catalog />} />
-          <Route
-            path="/product/:productId"
-            element={<ProductDetails />}
-          />
-          <Route path="/cart" element={<Cart />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
-      </main>
 
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 }
 
